@@ -1,0 +1,42 @@
+<div th:fragment="sidebar_menu" id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+	<div class="menu_section">
+		<hr/>
+		<ul class="nav side-menu">
+			<li>
+				<a><i class="fa fa-home"></i>
+					<font th:text="#{sidebar.index}"></font><span class="fa fa-chevron-down"></span></a>
+				<ul class="nav child_menu">
+					<li>
+						<a th:href="@{/index.html}" th:text="#{sidebar.index.info}">Dashboard</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a><i class="fa fa-user"></i>
+					<font th:text="#{sidebar.user}"></font><span class="fa fa-chevron-down"></span></a>
+				<ul class="nav child_menu">
+					<li>
+						<a th:href="@{/api/user/index.html}" th:text="#{sidebar.user.info}">#用户信息</a>
+					</li>
+					<li>
+						<a th:href="@{/api/user/goto_add.html}" th:text="#{sidebar.user.add}">#用户添加</a>
+					</li>
+				</ul>
+			</li>
+
+			<li>
+				<a><i class="fa fa-user"></i>
+					<font>角色</font><span class="fa fa-chevron-down"></span></a>
+				<ul class="nav child_menu">
+					<li>
+						<a th:href="@{/api/role/index.html}">#角色信息</a>
+					</li>
+					<li>
+						<a th:href="@{/api/role/goto_add.html}">#角色添加</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+</div>

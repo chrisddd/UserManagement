@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>欢迎登录! | </title>
+
+		<!-- Bootstrap -->
+		<link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet" />
+		<!-- Font Awesome -->
+		<link th:href="@{/resources/css/font-awesome.min.css}" rel="stylesheet" />
+		<!-- NProgress -->
+		<link th:href="@{/resources/css/nprogress.css}" rel="stylesheet" />
+		<!-- Animate.css -->
+		<link th:href="@{/resources/css/animate.min.css}" rel="stylesheet" />
+
+		<!-- Custom Theme Style -->
+		<link th:href="@{/resources/css/custom.min.css}" rel="stylesheet" />
+	</head>
+
+	<body class="login">
+		<div>
+			<a class="hiddenanchor" id="signup"></a>
+			<a class="hiddenanchor" id="signin"></a>
+
+			<div class="login_wrapper">
+				<div class="animate form login_form">
+					<section class="login_content">
+						<form id="loginForm" method="post">
+							<h1>Login Form</h1>
+							<div>
+								<input type="text" id="loginName" name="loginName" class="form-control" placeholder="loginName" required="" />
+							</div>
+							<div>
+								<input type="password" id="password" name="password" class="form-control" placeholder="password" required="" />
+							</div>
+							<div class="main_input_box" style="position:relative;">
+								<input type="text" class="form-control" style="width:60%;margin-right:25%;" splabel="验证码" placeholder="计算结果" id="valicode" name="valicode" spcheck="require:true" /><img style="width:30%;position:absolute;right:7%;top:0px;display:inline-block;" id="valimage" src="/backend/account/valicode" onclick="changeValicode()" />
+							</div>
+
+							<div>
+								<input type="button" class="btn" value="登录" onclick="doLogin()" />
+								<a class="btn" style="font-size: 14px;margin:-2px 0 0 0;background-color:#ccc;" href="https://xx.xx.com.cn/mvc/oauth/index?redirect_uri=https://emap.csmc-cloud.com/oauth/back?code=&amp;&amp;client_id=emap">域账号登录</a>
+							</div>
+
+							<div class="clearfix"></div>
+
+							<div class="separator">
+
+								<div>
+									<h1><i class="fa fa-magnet"></i> 欢迎登录!</h1>
+									<p> &copy;2017-2018 DID 版权所有
+
+									</p>
+								</div>
+							</div>
+						</form>
+					</section>
+				</div>
+
+			</div>
+		</div>
+		<script th:src="@{/resources/js/jquery.min.js}"></script>
+		<script type="text/javascript">
+			function changeValicode() {
+				var date = new Date();
+				$("#valimage").attr("src", "/backend/account/valicode?t=" + date.getTime());
+			}
+
+			function doLogin() {
+				var formData = $("#loginForm").serialize();
+				$.post("/backend/account/login", formData,
+					function(data) {
+						if(data) {
+							if(data.result) {
+								//alert("登录成功！");
+								window.location.href = "/index";
+							} else {
+								alert(data.message);
+								var t = (new Date()).getTime();
+								$("#valimage").attr("src", "/backend/account/valicode?t=" + t);
+							}
+						}
+					}, "json");
+			}
+		</script>
+	</body>
+
+</html>

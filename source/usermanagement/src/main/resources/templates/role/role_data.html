@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>title</title>
+    <meta charset="UTF-8"/>
+</head>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>role信息
+                    <small>列表</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="check-all" class="flat"
+                                       onclick="batchActive.checkall(this)"/></th>
+                            <th>账号</th>
+                            <th>姓名</th>
+                            <th>分组</th>
+                            <th>手机号</th>
+                            <th>性别</th>
+                            <th>邮箱</th>
+                            <th>创建时间</th>
+                            <th>创建人</th>
+                            <th colspan="2">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="role:${roles}"
+                            class="even pointer">
+                            <td th:text="${role.id}"></td>
+                            <td th:text="${role.officeId}"></td>
+                            <td th:text="${role.roleName}"></td>
+                            <td th:text="${role.roleEnname}"></td>
+                            <td th:text="${role.roleType}"></td>
+                            <td th:text="${role.useable}"></td>
+                            <td th:text="${role.createUser}"></td>
+                            <td th:text="${role.createDate}"></td>
+                            <td th:text="${role.updateUser}"></td>
+                            <td th:text="${role.updateDate}"></td>
+                            <td th:text="${role.remarks}"></td>
+                            <td th:text="${role.delFlag}"></td>
+                            <td>
+                                <a th:href="@{/api/role/goto_detail(id=${role.id})}"
+                                   target="_blank">详情</a>
+                            </td>
+                            <td>
+                                <a th:href="@{/api/role/goto_update(id=${role.id})}"
+                                   target="_blank">修改</a>
+                            </td>
+                            <td>
+                                <a th:onclick="'javascript:doDelete(\'' + ${role.id} + '\');'">删除</a>
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td colspan="12" class="text-center">
+                                <span th:text="'共'+${pagevo.pageCount}+'页'"></span>
+                                <span th:class="${pagevo.pageIndex == 1} ? disabled"><a class="btn"
+                                                                                         th:onclick="'javascript:doPaging(\'' + ${pagevo.pageSize} + '\',1);'"
+                                                                                         th:text="首页">«</a></span>
+                                <span th:class="${pagevo.pageIndex == 1} ? disabled"><a class="btn"
+                                                                                         th:onclick="'javascript:doPaging(\'' + ${pagevo.pageSize} + '\',\'' + ${pagevo.pageIndex-1} + '\');'"
+                                                                                         th:text="上一页">←</a></span>
+                                <span th:class="${pagevo.pageIndex == (pagevo.pageIndex - 1)} ? 'active pointer-disabled'"><a
+                                        class="btn"
+                                        th:onclick="'javascript:doPaging(\'' + ${pagevo.pageSize} + '\',\'' + ${pagevo.pageIndex} + '\');'"
+                                        th:text="${pagevo.pageIndex}"></a></span>
+                                <span th:class="${pagevo.pageIndex == pagevo.pageCount} ? disabled"><a class="btn"
+                                                                                                        th:onclick="'javascript:doPaging(\'' + ${pagevo.pageSize} + '\',\'' + ${pagevo.pageIndex+1} + '\',\'' + ${pagevo.pageCount} + '\');'"
+                                                                                                        th:text="下一页">→</a></span>
+                                <span th:class="${pagevo.pageIndex == pagevo.pageCount} ? disabled"><a class="btn"
+                                                                                                        th:onclick="'javascript:doPaging(\'' + ${pagevo.pageSize} + '\',\'' + ${pagevo.pageCount} + '\');'"
+                                                                                                        th:text="尾页">»</a></span>
+                                <span th:text="'共'+${pagevo.count}+'条'"></span>
+                            </td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
