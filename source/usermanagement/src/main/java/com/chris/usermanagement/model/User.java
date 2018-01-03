@@ -19,149 +19,149 @@ import org.hibernate.annotations.DynamicUpdate;
  * The class user model
  *
  * @author chris
- * @Date 2018-01-03 14:49
+ * @Date 2018-01-03 18:02
  */
 @Entity
 @Table(name = "user")
 @DynamicInsert
 @DynamicUpdate
-public class User implements Serializable {
+public class User implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	/**
+	 * 编号
+	 */
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 
-    /**
-     * userCode
-     */
-    @Column(name = "user_code")
-    private String userCode;
+	/**
+	 * 登录名
+	 */
+	@Column(name = "user_code")
+	private String userCode;
 
 
-    /**
-     * userName
-     */
-    @Column(name = "user_name")
-    private String userName;
+	/**
+	 * 姓名
+	 */
+	@Column(name = "user_name")
+	private String userName;
 
 
-    /**
-     * password
-     */
-    @Column(name = "password")
-    private String password;
+	/**
+	 * 密码
+	 */
+	@Column(name = "password")
+	private String password;
 
 
-    /**
-     * companyId
-     */
-    @Column(name = "company_id")
-    private Integer companyId;
+	/**
+	 * 归属公司
+	 */
+	@Column(name = "company_id")
+	private Integer companyId;
 
 
-    /**
-     * officeId
-     */
-    @Column(name = "office_id")
-    private Integer officeId;
+	/**
+	 * 归属部门
+	 */
+	@Column(name = "office_id")
+	private Integer officeId;
 
 
-    /**
-     * number
-     */
-    @Column(name = "number")
-    private String number;
+	/**
+	 * 工号
+	 */
+	@Column(name = "number")
+	private String number;
 
 
-    /**
-     * email
-     */
-    @Column(name = "email")
-    private String email;
+	/**
+	 * 邮箱
+	 */
+	@Column(name = "email")
+	private String email;
 
 
-    /**
-     * mobile
-     */
-    @Column(name = "mobile")
-    private String mobile;
+	/**
+	 * 手机
+	 */
+	@Column(name = "mobile")
+	private String mobile;
 
 
-    /**
-     * userType
-     */
-    @Column(name = "user_type")
-    private String userType;
+	/**
+	 * 用户类型
+	 */
+	@Column(name = "user_type")
+	private String userType;
 
 
-    /**
-     * photo
-     */
-    @Column(name = "photo")
-    private String photo;
+	/**
+	 * 用户头像
+	 */
+	@Column(name = "photo")
+	private String photo;
 
 
-    /**
-     * loginIp
-     */
-    @Column(name = "login_ip")
-    private String loginIp;
+	/**
+	 * 最后登陆IP
+	 */
+	@Column(name = "login_ip")
+	private String loginIp;
 
 
-    /**
-     * loginDate
-     */
-    @Column(name = "login_date")
-    private Date loginDate;
+	/**
+	 * 最后登陆时间
+	 */
+	@Column(name = "login_date")
+	private Date loginDate;
 
 
-    /**
-     * createUser
-     */
-    @Column(name = "create_user")
-    private String createUser;
+	/**
+	 * 创建者
+	 */
+	@Column(name = "create_user")
+	private String createUser;
 
 
-    /**
-     * createDate
-     */
-    @Column(name = "create_date")
-    private Date createDate;
+	/**
+	 * 创建时间
+	 */
+	@Column(name = "create_date")
+	private Date createDate;
 
 
-    /**
-     * updateUser
-     */
-    @Column(name = "update_user")
-    private String updateUser;
+	/**
+	 * 更新者
+	 */
+	@Column(name = "update_user")
+	private String updateUser;
 
 
-    /**
-     * updateDate
-     */
-    @Column(name = "update_date")
-    private Date updateDate;
+	/**
+	 * 更新时间
+	 */
+	@Column(name = "update_date")
+	private Date updateDate;
 
 
-    /**
-     * remarks
-     */
-    @Column(name = "remarks")
-    private String remarks;
+	/**
+	 * 备注信息
+	 */
+	@Column(name = "remarks")
+	private String remarks;
 
 
-    /**
-     * delFlag
-     */
-    @Column(name = "del_flag")
-    private String delFlag;
+	/**
+	 * 删除标记
+	 */
+	@Column(name = "del_flag")
+	private String delFlag;
 
     public Long getId() {
         return id;
