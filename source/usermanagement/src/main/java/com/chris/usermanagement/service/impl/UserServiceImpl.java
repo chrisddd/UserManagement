@@ -3,10 +3,16 @@ package com.chris.usermanagement.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 
+import com.chris.usermanagement.dao.RoleDAO;
+import com.chris.usermanagement.dao.UserRoleMapDAO;
+import com.chris.usermanagement.model.Role;
+import com.chris.usermanagement.model.UserRoleMap;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +38,12 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private UserRoleMapDAO userRoleMapDAO;
+
+    @Autowired
+    private RoleDAO roleDAO;
+
     @Override
     public User save(UserVO vo) {
         User user = new User();
@@ -43,7 +55,20 @@ public class UserServiceImpl implements IUserService {
         user.setUpdateUser("admin");
         user.setUpdateDate(new Date());
 
-        return userDAO.save(user);
+        List<Long> roleIds = vo.getRoleIds();
+        List<Role> roles = roleDAO.findByIdIn(roleIds);
+        user.setRoles(roles);
+
+        roleIds.forEach(roleId -> {
+                    UserRoleMap userRoleMap = new UserRoleMap();
+                    userRoleMap.setUserCode(vo.getUserCode());
+                    userRoleMap.setRoleId(roleId);
+                    userRoleMapDAO.save(userRoleMap);
+                }
+        );
+
+        user = userDAO.save(user);
+        return user;
     }
 
     @Override
@@ -72,21 +97,35 @@ public class UserServiceImpl implements IUserService {
             return cb.and(list.toArray(p));
 
         }, page);
+        users.forEach(user -> {
+            user.setRoles(getRoles(user.getUserCode()));
+        });
         return users;
     }
 
     @Override
     public List<User> selectList(UserVO vo) {
+        List<User> users = userDAO.findAll();
+        users.forEach(user -> {
+            user.setRoles(getRoles(user.getUserCode()));
+        });
 
-        return userDAO.findAll();
+        return users;
     }
 
     @Override
     public User selectById(Long id) {
-
-        return userDAO.getOne(id);
+        User user = userDAO.getOne(id);
+        user.setRoles(getRoles(user.getUserCode()));
+        return user;
     }
 
+    private List<Role> getRoles(String userCode) {
+        List<UserRoleMap> userRoleMaps = userRoleMapDAO.findByUserCode(userCode);
+        List<Long> roleIds = userRoleMaps.stream().map(UserRoleMap::getRoleId).collect(Collectors.toList());
+        List<Role> roles = roleDAO.findByIdIn(roleIds);
+        return roles;
+    }
 }
 
  

@@ -2,24 +2,21 @@ package com.chris.usermanagement.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
  * The class user model
+ * 
  *
  * @author chris
- * @Date 2018-01-03 18:02
+ * @Date 2018-01-03 18:22
  */
 @Entity
 @Table(name = "user")
@@ -56,6 +53,7 @@ public class User implements Serializable  {
 	 * 密码
 	 */
 	@Column(name = "password")
+    @JsonIgnore
 	private String password;
 
 
@@ -63,14 +61,14 @@ public class User implements Serializable  {
 	 * 归属公司
 	 */
 	@Column(name = "company_id")
-	private Integer companyId;
+	private Long companyId;
 
 
 	/**
 	 * 归属部门
 	 */
 	@Column(name = "office_id")
-	private Integer officeId;
+	private Long officeId;
 
 
 	/**
@@ -163,155 +161,166 @@ public class User implements Serializable  {
 	@Column(name = "del_flag")
 	private String delFlag;
 
-    public Long getId() {
-        return id;
-    }
+	@Transient
+	List<Role> roles = Lists.newArrayList();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getUserCode() {
-        return userCode;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
+	public String getUserCode() {
+		return userCode;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public Integer getCompanyId() {
-        return companyId;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
+	public Long getCompanyId() {
+		return companyId;
+	}
 
-    public Integer getOfficeId() {
-        return officeId;
-    }
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
 
-    public void setOfficeId(Integer officeId) {
-        this.officeId = officeId;
-    }
+	public Long getOfficeId() {
+		return officeId;
+	}
 
-    public String getNumber() {
-        return number;
-    }
+	public void setOfficeId(Long officeId) {
+		this.officeId = officeId;
+	}
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+	public String getNumber() {
+		return number;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getMobile() {
-        return mobile;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+	public String getMobile() {
+		return mobile;
+	}
 
-    public String getUserType() {
-        return userType;
-    }
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+	public String getUserType() {
+		return userType;
+	}
 
-    public String getPhoto() {
-        return photo;
-    }
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
+	public String getPhoto() {
+		return photo;
+	}
 
-    public String getLoginIp() {
-        return loginIp;
-    }
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
+	public String getLoginIp() {
+		return loginIp;
+	}
 
-    public Date getLoginDate() {
-        return loginDate;
-    }
+	public void setLoginIp(String loginIp) {
+		this.loginIp = loginIp;
+	}
 
-    public void setLoginDate(Date loginDate) {
-        this.loginDate = loginDate;
-    }
+	public Date getLoginDate() {
+		return loginDate;
+	}
 
-    public String getCreateUser() {
-        return createUser;
-    }
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
+	}
 
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
-    }
+	public String getCreateUser() {
+		return createUser;
+	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
 
-    public String getUpdateUser() {
-        return updateUser;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser;
-    }
+	public String getUpdateUser() {
+		return updateUser;
+	}
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
+	public Date getUpdateDate() {
+		return updateDate;
+	}
 
-    public String getRemarks() {
-        return remarks;
-    }
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
+	public String getRemarks() {
+		return remarks;
+	}
 
-    public String getDelFlag() {
-        return delFlag;
-    }
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
-    }
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 }

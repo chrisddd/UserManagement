@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.chris.usermanagement.model.Role;
 
+import java.util.List;
+
 /**
  * The interface RoleDAO.
  *
@@ -13,5 +15,6 @@ import com.chris.usermanagement.model.Role;
  */
 public interface RoleDAO extends JpaRepository<Role, Long>, JpaSpecificationExecutor<Role> {
 
+    List<Role> findByIdIn(List<Long> roleIds);
 
 }

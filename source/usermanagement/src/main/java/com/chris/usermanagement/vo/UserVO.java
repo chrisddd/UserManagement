@@ -50,13 +50,13 @@ public class UserVO implements Serializable {
     /**
      * companyId
      */
-    private Integer companyId;
+    private Long companyId;
 
 
     /**
      * officeId
      */
-    private Integer officeId;
+    private Long officeId;
 
 
     /**
@@ -136,6 +136,8 @@ public class UserVO implements Serializable {
      */
     private String delFlag;
 
+    private List<Long> roleIds;
+
     public Long getId() {
         return id;
     }
@@ -168,19 +170,19 @@ public class UserVO implements Serializable {
         this.password = password;
     }
 
-    public Integer getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(Integer companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 
-    public Integer getOfficeId() {
+    public Long getOfficeId() {
         return officeId;
     }
 
-    public void setOfficeId(Integer officeId) {
+    public void setOfficeId(Long officeId) {
         this.officeId = officeId;
     }
 
@@ -288,4 +290,11 @@ public class UserVO implements Serializable {
         this.delFlag = delFlag;
     }
 
+    public List<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
+    }
 }
