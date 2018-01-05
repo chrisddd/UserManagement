@@ -33,71 +33,71 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/user")
 public class UserController extends BaseController {
 
-protected final Log logger = LogFactory.getLog(getClass());
+    protected final Log logger = LogFactory.getLog(getClass());
 
-private String PREFIX = "/user/";
+    private String PREFIX = "/user/";
 
-@Autowired
-private IUserService userService;
+    @Autowired
+    private IUserService userService;
 
-@ApiOperation(value = "跳转到user首页", notes = "跳转到user首页")
-@RequestMapping(value = "/index", method = RequestMethod.GET)
-public String index() {
-		return PREFIX + "user";
-		}
+    @ApiOperation(value = "跳转到user首页", notes = "跳转到user首页")
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
+        return PREFIX + "user";
+    }
 
-@ApiOperation(value = "跳转到添加", notes = "跳转到添加")
-@RequestMapping(value = "/goto_add", method = RequestMethod.GET)
-public String userAdd() {
-		return PREFIX + "user_add";
-		}
+    @ApiOperation(value = "跳转到添加", notes = "跳转到添加")
+    @RequestMapping(value = "/goto_add", method = RequestMethod.GET)
+    public String userAdd() {
+        return PREFIX + "user_add";
+    }
 
-@ApiOperation(value = "跳转到详情", notes = "跳转到详情")
-@RequestMapping(value = "/goto_detail", method = RequestMethod.GET)
-public String userDetail(Long id, Model model) {
-		model.addAttribute("user", userService.selectById(id));
-		return PREFIX + "user_detail";
-		}
+    @ApiOperation(value = "跳转到详情", notes = "跳转到详情")
+    @RequestMapping(value = "/goto_detail", method = RequestMethod.GET)
+    public String userDetail(Long id, Model model) {
+        model.addAttribute("user", userService.selectById(id));
+        return PREFIX + "user_detail";
+    }
 
-@ApiOperation(value = "跳转到修改", notes = "跳转到修改")
-@RequestMapping(value = "/goto_update", method = RequestMethod.GET)
-public String userUpdate(Long id, Model model) {
-		model.addAttribute("user", userService.selectById(id));
-		return PREFIX + "user_edit";
-		}
+    @ApiOperation(value = "跳转到修改", notes = "跳转到修改")
+    @RequestMapping(value = "/goto_update", method = RequestMethod.GET)
+    public String userUpdate(Long id, Model model) {
+        model.addAttribute("user", userService.selectById(id));
+        return PREFIX + "user_edit";
+    }
 
-@ApiOperation(value = "User新增", notes = "新增User 记录")
-@RequestMapping(value = "/add", method = RequestMethod.POST)
-@ResponseBody
-public ResultResponse add(UserVO vo) {
+    @ApiOperation(value = "User新增", notes = "新增User 记录")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultResponse add(UserVO vo) {
 
-		return process(t -> {
-		User user = userService.save(vo);
-		t.setData(user);
-		});
-		}
+        return process(t -> {
+            User user = userService.save(vo);
+            t.setData(user);
+        });
+    }
 
-@ApiOperation(value = "User删除", notes = "根据User id删除")
-@RequestMapping(value = "/delete", method = RequestMethod.POST)
-@ResponseBody
-public ResultResponse delete(Long id) {
+    @ApiOperation(value = "User删除", notes = "根据User id删除")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultResponse delete(Long id) {
 
-		return process(t -> {
-		userService.deleteById(id);
-		t.setData("");
-		});
-		}
+        return process(t -> {
+            userService.deleteById(id);
+            t.setData("");
+        });
+    }
 
-@ApiOperation(value = "User修改", notes = "根据User id修改")
-@RequestMapping(value = "/update", method = RequestMethod.POST)
-@ResponseBody
-public ResultResponse update(Long id, UserVO vo) {
+    @ApiOperation(value = "User修改", notes = "根据User id修改")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultResponse update(Long id, UserVO vo) {
 
-		return process(t -> {
-		User user = userService.updateUser(vo);
-		t.setData(user);
-		});
-		}
+        return process(t -> {
+            User user = userService.updateUser(vo);
+            t.setData(user);
+        });
+    }
 
 //@ApiOperation(value = "User列表", notes = "获取User列表")
 //@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -111,37 +111,37 @@ public ResultResponse update(Long id, UserVO vo) {
 //
 //		}
 
-@ApiOperation(value = "User列表", notes = "获取User列表")
-@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
-public String list(Model model, UserVO vo) {
+    @ApiOperation(value = "User列表", notes = "获取User列表")
+    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    public String list(Model model, UserVO vo) {
 
-		List<User> users = userService.selectList(vo);
-		model.addAttribute("users", users);
-		return PREFIX + "user_data";
-		}
+        List<User> users = userService.selectList(vo);
+        model.addAttribute("users", users);
+        return PREFIX + "user_data";
+    }
 
-@ApiOperation(value = "User分页列表", notes = "获取User分页列表")
-@RequestMapping(value = "/page" , method = {RequestMethod.GET, RequestMethod.POST})
-@ResponseBody
-public ResultResponse list(String condition, @RequestParam(required = true) Integer pageNumber, Integer pageSize) {
+    @ApiOperation(value = "User分页列表", notes = "获取User分页列表")
+    @RequestMapping(value = "/page", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public ResultResponse list(String condition, @RequestParam(required = true) Integer pageNumber, Integer pageSize) {
 
-		return process(t -> {
-		int page = pageSize != null ? pageSize : 10;
-		Page<User> users = userService.listPageByCondition(condition, new PageRequest(pageNumber, page));
-		t.setData(users);
-		});
+        return process(t -> {
+            int page = pageSize != null ? pageSize : 10;
+            Page<User> users = userService.listPageByCondition(condition, new PageRequest(pageNumber, page));
+            t.setData(users);
+        });
 
-		}
+    }
 
-@ApiOperation(value = "User详情", notes = "根据User id获取详情")
-@RequestMapping(value = "/detail", method = {RequestMethod.GET, RequestMethod.POST})
-@ResponseBody
-public ResultResponse detail(Long id) {
-		return process(t -> {
-		User user = userService.selectById(id);
-		t.setData(user);
-		});
-		}
-		}
+    @ApiOperation(value = "User详情", notes = "根据User id获取详情")
+    @RequestMapping(value = "/detail", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public ResultResponse detail(Long id) {
+        return process(t -> {
+            User user = userService.selectById(id);
+            t.setData(user);
+        });
+    }
+}
 
  
