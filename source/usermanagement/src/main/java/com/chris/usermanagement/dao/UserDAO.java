@@ -13,5 +13,5 @@ import com.chris.usermanagement.model.User;
  */
 public interface UserDAO extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
-
+    User findByUserCodeAndPasswordAndDelFlag(String userCode, String password, String delFlag);
 }

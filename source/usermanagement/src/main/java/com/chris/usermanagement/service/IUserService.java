@@ -58,4 +58,6 @@ public interface IUserService {
 	 * @return User
 	 */
 	User selectById(Long id);
+
+    User login(String userCode, String password);
 }

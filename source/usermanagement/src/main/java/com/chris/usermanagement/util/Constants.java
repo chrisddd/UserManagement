@@ -24,6 +24,8 @@ public class Constants {
      * The constant CACHE_EXPIRE_MEDIA.
      */
     public static final String CACHE_EXPIRE_MEDIA = "expire_media_id";
+
+    public static final String VALI_CODE = "LOGIN_VALIDATION_CODE";
     /**
      * The constant LEVEL_CUSTOMER.
      */

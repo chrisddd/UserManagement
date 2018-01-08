@@ -2,6 +2,8 @@ package com.chris.usermanagement.util;
 
 
 import com.chris.usermanagement.model.User;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -28,6 +30,17 @@ public abstract class BaseController {
 
        return loginUser;
    }
+
+    /**
+     * by default, will set into {@link ModelMap}
+     *
+     * @return
+     */
+    @ModelAttribute("currentUser")
+    public User getUser() {
+
+        return getLoginUser();
+    }
 
    /**
     * Current user optional.

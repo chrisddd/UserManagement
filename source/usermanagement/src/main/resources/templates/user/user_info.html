@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>个人信息</title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link th:href="@{/resources/css/font-awesome.min.css}" rel="stylesheet"/>
+    <!-- NProgress -->
+    <link th:href="@{/resources/css/nprogress.css}" rel="stylesheet"/>
+    <!-- jQuery custom content scroller -->
+    <link th:href="@{/resources/css/jquery.mCustomScrollbar.min.css}" rel="stylesheet"/>
+    <!-- Custom Theme Style -->
+    <link th:href="@{/resources/css/custom.min.css}" rel="stylesheet"/>
+
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a th:href="@{/index.html}" class="site_title"><i class="fa fa-magnet"></i> <span
+                            th:text="#{system.info}">系统名称</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" th:include="common/sidebar_menu :: sidebar_menu">
+                </div>
+                <!-- /sidebar menu -->
+
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div id="top_navigation" th:include="common/top_navigation :: top_navigation" class="top_nav">
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content 主体-->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>个人信息</h3>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+
+                                <form class="form-horizontal form-label-left" novalidate="novalidate">
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">编号:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.id}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userCode">登录名:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.userCode}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userName">姓名:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.userName}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">密码:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.password}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="companyId">归属公司:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.companyId}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="officeId">归属部门:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.officeId}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">工号:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.number}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">邮箱:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.email}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.mobile}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userType">用户类型:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.userType}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo">用户头像:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.photo}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginIp">最后登陆IP:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.loginIp}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginDate">最后登陆时间:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.loginDate}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="createUser">创建者:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.createUser}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="createDate">创建时间:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.createDate}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="updateUser">更新者:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.updateUser}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="updateDate">更新时间:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.updateDate}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="remarks">备注信息:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.remarks}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="delFlag">删除标记:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label class="form-control col-md-7 col-xs-12"
+                                                   th:text="${currentUser.delFlag}"></label>
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <a class="btn btn-success" 
+                                             th:href="@{/api/user/goto_update(id=${currentUser.id})}"
+                                               target="_blank">修改</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div id="footer_content" th:include="common/footer_content :: footer_content"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/resources/js/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/resources/js/bootstrap.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/resources/js/fastclick.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/resources/js/nprogress.js}"></script>
+<!-- jQuery custom content scroller -->
+<script th:src="@{/resources/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+<!-- Custom Theme Scripts -->
+<script th:src="@{/resources/js/custom.min.js}"></script>
+
+</body>
+
+</html>
+ 

@@ -142,6 +142,12 @@ public class UserController extends BaseController {
             t.setData(user);
         });
     }
+
+    @ApiOperation(value = "个人信息", notes = "跳转到个人信息")
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public String userInfo() {
+        return PREFIX + "user_info";
+    }
 }
 
  

@@ -120,6 +120,17 @@ public class UserServiceImpl implements IUserService {
         return user;
     }
 
+    @Override
+    public User login(String userCode, String password) {
+        String delFlag="0";
+        User user = userDAO.findByUserCodeAndPasswordAndDelFlag(userCode,password,delFlag);
+        if (null != user) {
+            user.setRoles(getRoles(user.getUserCode()));
+            user.setLoginDate(new Date());
+        }
+        return user;
+    }
+
     private List<Role> getRoles(String userCode) {
         List<UserRoleMap> userRoleMaps = userRoleMapDAO.findByUserCode(userCode);
         List<Long> roleIds = userRoleMaps.stream().map(UserRoleMap::getRoleId).collect(Collectors.toList());
