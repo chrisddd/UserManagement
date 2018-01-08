@@ -50,12 +50,12 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
         }
 //        if (rl.authPrivileges().length > 0) {
         if (ArrayUtils.isNotEmpty(rl.roles())) {
-        	
-        	if(null == user) {
-        		logonFailureResponse(response);
-        		 return false;
-        	}
-        	
+
+            if (null == user) {
+                logonFailureResponse(response);
+                return false;
+            }
+
             // 如果权限配置不为空, 则取出配置值
             String[] authorities = rl.roles();
             Set<String> authSet = new HashSet<>();
@@ -88,7 +88,7 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
         ObjectMapper om = new ObjectMapper();
         response.getWriter().write(om.writeValueAsString(resultResponse));
     }
-    
+
     private void logonFailureResponse(HttpServletResponse response) throws IOException {
         response.setCharacterEncoding(StringPool.UTF_8);
         response.setContentType(MimeTypes.MIME_APPLICATION_JSON);

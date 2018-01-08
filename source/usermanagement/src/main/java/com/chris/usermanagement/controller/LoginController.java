@@ -102,7 +102,6 @@ public class LoginController extends BaseController {
      */
     @ApiOperation(value = "系统", notes = "退出登录")
     @GetMapping(value = "/logout")
-    @Permission
     public String logout(HttpServletRequest request) {
         String userCode = null;
         User user = getUser();
