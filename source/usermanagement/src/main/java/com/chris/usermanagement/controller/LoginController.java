@@ -1,14 +1,14 @@
 package com.chris.usermanagement.controller;
 
+import com.chris.usermanagement.config.WebLogAspect;
 import com.chris.usermanagement.model.User;
 import com.chris.usermanagement.service.IUserService;
-import com.chris.usermanagement.util.BaseController;
-import com.chris.usermanagement.util.Constants;
-import com.chris.usermanagement.util.ResultResponse;
-import com.chris.usermanagement.util.ValidationNumber;
+import com.chris.usermanagement.util.*;
 import com.xiaoleilu.hutool.date.DateUtil;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +31,8 @@ public class LoginController extends BaseController {
     @Autowired
     private IUserService userService;
 
+    private static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+
     /**
      * 验证码
      *
@@ -50,6 +52,7 @@ public class LoginController extends BaseController {
         }
 
     }
+
     /**
      * Login result response.
      *
@@ -62,8 +65,8 @@ public class LoginController extends BaseController {
     @PostMapping(value = "/login")
     @ResponseBody
     public ResultResponse login(HttpServletRequest request, String userCode, String password) {
-//        PssLogFactory.getOperationLog().info("操作人：" + userCode + "--------------操作时间："
-//                + DateUtil.formatHttpDate(new Date()) + "登录");
+        LOGGER.info("操作人：" + userCode + "--------------操作时间："
+                + DateUtil.formatHttpDate(new Date()) + "登录");
         ResultResponse resultResponse = new ResultResponse();
         userCode = userCode.trim();
         password = password.trim();
@@ -85,7 +88,7 @@ public class LoginController extends BaseController {
                 return resultResponse;
             }
         } catch (Exception e) {
-//            PssLogFactory.getErrorLog().error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             resultResponse.setResult(false);
             return resultResponse;
         }
@@ -99,9 +102,15 @@ public class LoginController extends BaseController {
      */
     @ApiOperation(value = "系统", notes = "退出登录")
     @GetMapping(value = "/logout")
+    @Permission
     public String logout(HttpServletRequest request) {
-//		PssLogFactory.getOperationLog().info("操作人：" + getLoginUser().getUserCode() + "--------------操作时间："
-//				+ DateUtil.formatHttpDate(new Date()) + "退出登录");
+        String userCode = null;
+        User user = getUser();
+        if (null != user) {
+            userCode = user.getUserCode();
+        }
+        LOGGER.info("操作人：" + userCode + "--------------操作时间："
+                + DateUtil.formatHttpDate(new Date()) + "退出登录");
 //		return process(t -> {
         HttpSession session = request.getSession(true);
         session.removeAttribute(Constants.LOGIN_SESSION_VALUE);
