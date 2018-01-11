@@ -5,7 +5,6 @@ import com.chris.usermanagement.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jodd.util.MimeTypes;
 import jodd.util.StringPool;
-import netscape.security.Privilege;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
