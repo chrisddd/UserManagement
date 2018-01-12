@@ -26,15 +26,4 @@ public class IndexController extends BaseController{
 		return "index";
 	}
 
-	@GetMapping("/user")
-	@ApiOperation(value = "首页", notes = "返回首页")
-	public String user() {
-		return "user";
-	}
-
-	@GetMapping("/role")
-	@ApiOperation(value = "首页", notes = "返回首页")
-	public String role() {
-		return "role";
-	}
 }
