@@ -36,7 +36,7 @@ public class UserController extends BaseController {
 
     protected final Log logger = LogFactory.getLog(getClass());
 
-    private String PREFIX = "/user/";
+    private String PREFIX = "user/";
 
     @Autowired
     private IUserService userService;

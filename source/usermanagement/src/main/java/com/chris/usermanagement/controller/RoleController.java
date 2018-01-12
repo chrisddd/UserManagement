@@ -35,7 +35,7 @@ public class RoleController extends BaseController {
 
 protected final Log logger = LogFactory.getLog(getClass());
 
-private String PREFIX = "/role/";
+private String PREFIX = "role/";
 
 @Autowired
 private IRoleService roleService;
