@@ -2,6 +2,7 @@ package com.chris.usermanagement.util;
 
 
 import com.chris.usermanagement.model.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestAttributes;
@@ -18,6 +19,8 @@ import java.util.Optional;
 */
 public abstract class BaseController {
 
+    @Value("${usermanagement.env}")
+    private String env;
    /**
     * Gets login user.
     *
@@ -111,4 +114,8 @@ public abstract class BaseController {
 
    }
 
+    @ModelAttribute("env")
+    public String env() {
+        return env;
+    }
 }
